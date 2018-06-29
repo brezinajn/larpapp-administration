@@ -15,8 +15,8 @@ export default function ArticleContainer({articleContainer}: IAllArticleComponen
         <Subscribe to={[ArticleStateContainer]}>
             {
                 (articleState: ArticleStateContainer) => (
-                    <>
-                        <div>{articleState.state.endpoint}</div>
+                    <div className="tab-page">
+                        <h1>{articleState.state.endpoint}</h1>
                         <ArticleEdit article={articleState.state.articleToEdit}
                                      uploadState={articleState.state.uploadState}
                                      onTitleChanged={articleState.setArticleTitle}
@@ -34,7 +34,7 @@ export default function ArticleContainer({articleContainer}: IAllArticleComponen
                             onSubscriberCreated={articleState.setSubscriber}
                             subscriber={articleState.state.subscriber}
                         />
-                    </>
+                    </div>
                 )}
         </Subscribe>
     </Provider>

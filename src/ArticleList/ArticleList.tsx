@@ -8,7 +8,9 @@ interface INewsListProps {
 
 export default function ArticleList({articles, onDeleteClicked}: INewsListProps) {
     return (
-        <>
+        <div className="article-list-wrap flex">
+          <h2>Articles list</h2>
+          <div className="article-list">
             {articles.map((articleKVPair) =>
                 <ArticleItem
                     key={articleKVPair.key}
@@ -17,7 +19,7 @@ export default function ArticleList({articles, onDeleteClicked}: INewsListProps)
                     onDeleteClicked={onDeleteClicked}
                 />
             )}
-        </>
+          </div>
+        </div>
     )
 }
-

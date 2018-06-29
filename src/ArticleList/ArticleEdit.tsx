@@ -34,7 +34,7 @@ export default function ArticleEdit({
             <label>Content</label><textarea value={article.content}
                                             onInput={onTextInputChangedFactory(onContentChanged)}/>
           </div>
-          <div className="row100 input-group">
+          <div className="row100 input-group image-upload">
             <label>Image</label><input type="file" onChange={onFileInputChangedFactory(onFileChanged)}/><input
                 type="checkbox" checked={uploadState === UploadStates.FINISHED} disabled={true}/>
             <UploadingMessage
@@ -42,8 +42,8 @@ export default function ArticleEdit({
             />
             <ErrorMessage visible={uploadState === UploadStates.ERROR}/>
           </div>
-          <div className="row100 input-group">
-            <button onClick={onSubmitClicked}>Submit</button>
+          <div className="row100 input-group submit">
+            <button onClick={onSubmitClicked} className="pink-btn">Submit</button>
           </div>
         </div>
     </>

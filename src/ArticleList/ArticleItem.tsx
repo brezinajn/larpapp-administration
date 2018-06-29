@@ -1,3 +1,4 @@
+import * as moment from 'moment'
 import * as React from 'react'
 // import {storage} from "firebase"
 
@@ -11,15 +12,16 @@ export default function ArticleItem({article, articleId, onDeleteClicked}: IArti
     let date
     if (article.createdAt) {
         date = article.createdAt.toDateString() + " " + article.createdAt.toTimeString()
+        date = moment(article.createdAt).format("D.M.Y HH:mm:ss")
     } else {
         date = "Pending..."
     }
 
-    return (<div>
-        <span>{article.title}</span>
-        <span>{article.content.substr(0, 30).concat("...")}</span>
-        <span>{date}</span>
-        <button onClick={onButtonClickedFactory(articleId, onDeleteClicked)}>Delete</button>
+    return (<div className="article-row flex">
+        <div className="datetime">{date}</div>
+        <div className="title">{article.title}</div>
+        <div className="perex">{article.content.substr(0, 100).concat("...")}</div>
+        <button onClick={onButtonClickedFactory(articleId, onDeleteClicked)} className="delete pink-btn">Delete</button>
     </div>)
 }
 

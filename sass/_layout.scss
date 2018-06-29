@@ -79,7 +79,6 @@ ol{
 
 .App-header {
   background-color: #222;
-  height: 150px;
   padding: 20px;
   color: white;
 }
@@ -103,36 +102,61 @@ ol{
 .row100{
   width: 100%;
 }
+.hidden{
+  display: none;
+}
 
+.pink-btn{
+  text-align: center;
+  background-color: $purple-light;
+  @include animall;
+  border: 1px solid $purple;
+  color: $white;
+  &:hover{
+    background-color: $purple;
+  }
+}
 ////// Tabs
 .tab-controls{
   flex-direction: row;
   margin-bottom: $gap;
   .tab-button{
-    width: 150px;
+    width: 160px;
     padding: 1em;
     border: 1px solid $gray;
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
     margin-right: $gap;
+    cursor: pointer;
+    @include animall;
+    background-color: $white;
     &:hover{
-      
+      background-color: $purple-light;
     }
     &:last-child{
       margin-right: 0;
     }
     &.active{
-      text-decoration: underline;
+      border: 1px solid $black;
+      background-color: $purple;
+      color: $white;
     }
+  }
+}
+.tab-page{
+  h1{
+    font-size: 2em;
+    font-weight: 700;
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin-bottom: 1em;
   }
 }
 /////
 .create-article-wrap{
   width: 100%;
-  &.hidden{
-    display: none;
-  }
+  margin-bottom: $gap*2;
   .input-group{
     text-align: left;
     margin-bottom: $gap;
@@ -156,13 +180,60 @@ ol{
     textarea{
       min-height: 20em;
     }
-    button{
-      font-size: 1.5em;
-      padding: 0.25em 0.5em;
+    &.image-upload{
+      input[type="checkbox"]{
+        width: auto;
+        margin: $gap 0;
+      }
+    }
+    &.submit{
+      button{
+        font-size: 1.5em;
+        padding: 0.25em 1em;
+      }
     }
   }
 }
 
-.bububu{
-  color: #222222;
+
+//////// Article list
+.article-list-wrap{
+  flex-direction: column;
+  h2{
+    font-size: 1.5em;
+  }
+  .article-list{
+    // border: 1px solid $gray;
+  }
+  .article-row{
+    width: 100%;
+    padding: 0.4em;
+    align-items: center;
+    &:nth-child(odd){
+      background-color: lighten($gray, 30%);
+    }
+    &:nth-child(even){
+      background-color: lighten($gray, 20%);
+    }
+    & > *{
+      margin-right: $gap/2;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+    .datime{
+      width: 140px;
+    }
+    .title{
+      font-weight: 700;
+      width: 250px;
+    }
+    .perex{
+      width: calc(100% - 140px - 250px - 90px);
+    }
+    .delete{
+      width: 60px;
+      height: 24px;
+    }
+  }
 }
