@@ -11,12 +11,12 @@ import UIStateContainer from "./StateContainers/UIStateContainer"
 
 const articleContainer = new ArticleStateContainer({
     endpoint: "news",
-    environment: "test"
+    environment: "stalker2018"
 })
 
 const stalkerpediaContainer = new ArticleStateContainer({
     endpoint: "stalkerpedia",
-    environment: "test"
+    environment: "stalker2018"
 })
 
 class App extends React.Component {

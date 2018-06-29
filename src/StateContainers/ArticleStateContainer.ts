@@ -123,6 +123,12 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
 
     public saveArticle = async () => {
 
+        if(!this.state.articleToEdit.title || !this.state.articleToEdit.content){
+            alert("Both title and content need to be filled")
+            return
+        }
+
+
         const collection = firestore()
             .collection(this.state.collectionReference)
 
