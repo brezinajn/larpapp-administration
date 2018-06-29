@@ -24,18 +24,28 @@ export default function ArticleEdit({
                                         onSubmitClicked
                                     }: IArticleEditProps) {
     return <>
-        <label>Title</label><input id="title" type="text" value={article.title}
-                                   onInput={onTextInputChangedFactory(onTitleChanged)}/><br/>
-        <label>Content</label><textarea value={article.content}
-                                        onInput={onTextInputChangedFactory(onContentChanged)}/><br/>
-        <label>Image</label><input type="file" onChange={onFileInputChangedFactory(onFileChanged)}/><input
-            type="checkbox" checked={uploadState === UploadStates.FINISHED} disabled={true}/>
-        <UploadingMessage
-            visible={uploadState === UploadStates.STARTED}
-        />
-        <ErrorMessage visible={uploadState === UploadStates.ERROR}/>
-        <br/>
-        <button onClick={onSubmitClicked}>Submit</button>
+        <div className="flex row100 create-article-wrap">
+
+          <div className="row100 input-group">
+            <label>Title</label><input id="title" type="text" value={article.title}
+                                       onInput={onTextInputChangedFactory(onTitleChanged)}/>
+          </div>
+          <div className="row100 input-group">
+            <label>Content</label><textarea value={article.content}
+                                            onInput={onTextInputChangedFactory(onContentChanged)}/>
+          </div>
+          <div className="row100 input-group">
+            <label>Image</label><input type="file" onChange={onFileInputChangedFactory(onFileChanged)}/><input
+                type="checkbox" checked={uploadState === UploadStates.FINISHED} disabled={true}/>
+            <UploadingMessage
+                visible={uploadState === UploadStates.STARTED}
+            />
+            <ErrorMessage visible={uploadState === UploadStates.ERROR}/>
+          </div>
+          <div className="row100 input-group">
+            <button onClick={onSubmitClicked}>Submit</button>
+          </div>
+        </div>
     </>
 
 

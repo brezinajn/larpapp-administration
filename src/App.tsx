@@ -37,7 +37,11 @@ class App extends React.Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
-                <div>
+                <div className="App-container">
+                  <div className="tab-controls flex">
+                    <div className="tab-button">Article</div>
+                    <div className="tab-button">Stalkerpedia</div>
+                  </div>
                     <ArticleContainer articleContainer={articleContainer}/>
                     <ArticleContainer articleContainer={stalkerpediaContainer}/>
                 </div>

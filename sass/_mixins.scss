@@ -1,0 +1,3 @@
+@mixin animall($time: 0.2s) {
+  transition: all $time ease-in-out;
+}
