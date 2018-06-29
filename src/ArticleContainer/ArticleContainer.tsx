@@ -3,7 +3,7 @@ import {Provider, Subscribe} from "unstated"
 import ArticleEdit from "../ArticleList/ArticleEdit"
 import ArticleList from "../ArticleList/ArticleList"
 import ArticleListener from "../ArticleListener/ArticleListener"
-import ArticleStateContainer from "../ArticleStateContainer"
+import ArticleStateContainer from "../StateContainers/ArticleStateContainer"
 
 interface IAllArticleComponentsProps {
     articleContainer: ArticleStateContainer
@@ -16,6 +16,7 @@ export default function ArticleContainer({articleContainer}: IAllArticleComponen
             {
                 (articleState: ArticleStateContainer) => (
                     <>
+                        <div>{articleState.state.endpoint}</div>
                         <ArticleEdit article={articleState.state.articleToEdit}
                                      uploadState={articleState.state.uploadState}
                                      onTitleChanged={articleState.setArticleTitle}

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {ChangeEvent, FormEvent} from 'react'
-import {UploadStates} from "../ArticleStateContainer"
+import {UploadStates} from "../StateContainers/ArticleStateContainer"
 
 interface IArticleEditProps {
     article: IArticle,
