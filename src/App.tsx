@@ -9,14 +9,15 @@ import ArticleStateContainer from "./StateContainers/ArticleStateContainer"
 import UIStateContainer from "./StateContainers/UIStateContainer"
 
 
+const environment = "develop"
 const articleContainer = new ArticleStateContainer({
     endpoint: "news",
-    environment: "stalker2018"
+    environment
 })
 
 const stalkerpediaContainer = new ArticleStateContainer({
     endpoint: "stalkerpedia",
-    environment: "stalker2018"
+    environment
 })
 
 class App extends React.Component {

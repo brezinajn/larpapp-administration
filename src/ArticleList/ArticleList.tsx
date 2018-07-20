@@ -2,8 +2,8 @@ import * as React from 'react'
 import ArticleItem from "./ArticleItem"
 
 interface INewsListProps {
-    articles: Array<IKeyValuePair<IArticle>>
-    onDeleteClicked: (articleId: string) => void
+    readonly articles: Array<IKeyValuePair<IArticle>>
+    onDeleteClicked(articleId: string): void
 }
 
 export default function ArticleList({articles, onDeleteClicked}: INewsListProps) {

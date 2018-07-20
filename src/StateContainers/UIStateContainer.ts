@@ -4,7 +4,7 @@ type VisibleContainer = "news" | "stalkerpedia"
 
 
 interface IUIStateContainerState {
-    visibleContainer: VisibleContainer
+    readonly visibleContainer: VisibleContainer
 }
 
 
@@ -19,9 +19,9 @@ export default class UIStateContainer extends Container<IUIStateContainerState> 
         ...defaultState
     }
 
-    public setVisibleContaner = (visibleContainer: VisibleContainer) => this.setState({visibleContainer})
+    public setVisibleContainer = (visibleContainer: VisibleContainer) => this.setState({visibleContainer})
 
-    public setNewsVisible = () => this.setVisibleContaner("news")
-    public setStalkerpediaVisible = () => this.setVisibleContaner("stalkerpedia")
+    public setNewsVisible = () => this.setVisibleContainer("news")
+    public setStalkerpediaVisible = () => this.setVisibleContainer("stalkerpedia")
 
 }

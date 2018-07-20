@@ -5,34 +5,21 @@ import FieldValue = firestore.FieldValue
 
 export type UploadState = "ERROR" | "FINISHED" | "IDLE" | "STARTED"
 
-interface IUploadStates {
-    IDLE: UploadState,
-    ERROR: UploadState,
-    FINISHED: UploadState,
-    STARTED: UploadState
-}
-
-export const UploadStates: IUploadStates = {
-    ERROR: "ERROR",
-    FINISHED: "FINISHED",
-    IDLE: "IDLE",
-    STARTED: "STARTED"
-}
 
 interface IStateContainerState {
-    articleToEditId: string | undefined
-    articleToEdit: IArticle,
-    collectionReference: string,
-    uploadState: UploadState
-    articles: Array<IKeyValuePair<IArticle>>
-    subscriber: null | (() => void)
-    environment: string,
-    endpoint: string
+    readonly articleToEditId: string | undefined
+    readonly articleToEdit: IArticle,
+    readonly collectionReference: string,
+    readonly uploadState: UploadState
+    readonly articles: Array<IKeyValuePair<IArticle>>
+    readonly subscriber: null | (() => void)
+    readonly environment: string,
+    readonly endpoint: string
 }
 
 interface IArticleContainerProps {
-    environment: string,
-    endpoint: string
+    readonly environment: string,
+    readonly endpoint: string
 }
 
 const defaultArticle: IArticle = {
@@ -59,7 +46,7 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
             environment,
 
             subscriber: null,
-            uploadState: UploadStates.IDLE
+            uploadState: "IDLE"
         }
     }
 
@@ -81,11 +68,11 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
 
     public setArticleUrl = async (file: File | null) => {
 
-        let uploadState: UploadState = UploadStates.IDLE
+        let uploadState: UploadState = "IDLE"
         let url = null
 
         if (file) {
-            await this.setUploadState(UploadStates.STARTED)
+            await this.setUploadState("STARTED")
 
             try {
                 const task = await storage().ref(`/${this.state.environment}/${this.state.endpoint}/`)
@@ -93,10 +80,10 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
                     .put(file)
 
                 url = task.ref.fullPath
-                uploadState = UploadStates.FINISHED
+                uploadState = "FINISHED"
 
             } catch (e) {
-                uploadState = UploadStates.ERROR
+                uploadState = "ERROR"
                 alert(e.message)
             }
 
@@ -115,7 +102,7 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
     public resetArticle = () => this.setState({
         articleToEdit: {...defaultArticle},
         articleToEditId: undefined,
-        uploadState: UploadStates.IDLE
+        uploadState: "IDLE"
     })
 
 

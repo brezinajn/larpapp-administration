@@ -6,7 +6,7 @@ import ArticleListener from "../ArticleListener/ArticleListener"
 import ArticleStateContainer from "../StateContainers/ArticleStateContainer"
 
 interface IAllArticleComponentsProps {
-    articleContainer: ArticleStateContainer
+    readonly articleContainer: ArticleStateContainer
 }
 
 export default function ArticleContainer({articleContainer}: IAllArticleComponentsProps) {

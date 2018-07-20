@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {ChangeEvent, FormEvent} from 'react'
-import {UploadStates} from "../StateContainers/ArticleStateContainer"
+import {UploadState} from "../StateContainers/ArticleStateContainer"
 
 interface IArticleEditProps {
-    article: IArticle,
-    uploadState: string
+    readonly article: IArticle,
+    readonly uploadState: UploadState
 
     onTitleChanged(title: string): void
 
@@ -36,11 +36,11 @@ export default function ArticleEdit({
           </div>
           <div className="row100 input-group image-upload">
             <label>Image</label><input type="file" onChange={onFileInputChangedFactory(onFileChanged)}/><input
-                type="checkbox" checked={uploadState === UploadStates.FINISHED} disabled={true}/>
+                type="checkbox" checked={uploadState === "FINISHED"} disabled={true}/>
             <UploadingMessage
-                visible={uploadState === UploadStates.STARTED}
+                visible={uploadState === "STARTED"}
             />
-            <ErrorMessage visible={uploadState === UploadStates.ERROR}/>
+            <ErrorMessage visible={uploadState === "ERROR"}/>
           </div>
           <div className="row100 input-group submit">
             <button onClick={onSubmitClicked} className="pink-btn">Submit</button>
@@ -53,7 +53,7 @@ export default function ArticleEdit({
 
 
 interface IVisibleProps {
-    visible: boolean
+    readonly visible: boolean
 }
 
 function ErrorMessage({visible}: IVisibleProps) {
