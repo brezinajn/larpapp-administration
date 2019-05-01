@@ -7,7 +7,6 @@ export type UploadState = "ERROR" | "FINISHED" | "IDLE" | "STARTED"
 
 
 interface IStateContainerState {
-    readonly articleToEditId: string | undefined
     readonly articleToEdit: IArticle,
     readonly collectionReference: string,
     readonly uploadState: UploadState
@@ -25,13 +24,13 @@ interface IArticleContainerProps {
 const defaultArticle: IArticle = {
     content: "",
     createdAt: undefined,
+    id: null,
     imageUrl: null,
-    title: ""
+    title: "",
+    titleLowerCase: ""
 }
 
 export default class ArticleStateContainer extends Container<IStateContainerState> {
-
-
     constructor({environment, endpoint}: IArticleContainerProps) {
         super()
 
@@ -39,7 +38,6 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
             articleToEdit: {
                 ...defaultArticle
             },
-            articleToEditId: undefined,
             articles: [],
             collectionReference: `/default/${environment}/${endpoint}`,
             endpoint,
@@ -53,7 +51,8 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
     public setArticleTitle = (title: string) => this.setState({
         articleToEdit: {
             ...this.state.articleToEdit,
-            title
+            title,
+            titleLowerCase: title.toLowerCase()
         }
     })
 
@@ -101,7 +100,6 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
 
     public resetArticle = () => this.setState({
         articleToEdit: {...defaultArticle},
-        articleToEditId: undefined,
         uploadState: "IDLE"
     })
 
@@ -120,15 +118,16 @@ export default class ArticleStateContainer extends Container<IStateContainerStat
             .collection(this.state.collectionReference)
 
         let doc
-        if (this.state.articleToEditId) {
-            doc = collection.doc(this.state.articleToEditId)
+        if (this.state.articleToEdit.id) {
+            doc = collection.doc(this.state.articleToEdit.id)
         } else {
             doc = collection.doc()
         }
 
         await doc.set({
             ...this.state.articleToEdit,
-            createdAt: FieldValue.serverTimestamp()
+            createdAt: FieldValue.serverTimestamp(),
+            id: doc.id
         })
 
         return this.resetArticle()

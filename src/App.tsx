@@ -16,7 +16,7 @@ const articleContainer = new ArticleStateContainer({
 })
 
 const stalkerpediaContainer = new ArticleStateContainer({
-    endpoint: "stalkerpedia",
+    endpoint: "encyclopedia",
     environment
 })
 
@@ -30,7 +30,8 @@ class App extends React.Component {
             databaseURL: "https://larpapp-a45bd.firebaseio.com",
             messagingSenderId: "72895662075",
             projectId: "larpapp-a45bd",
-            storageBucket: "larpapp-a45bd.appspot.com"
+            storageBucket: "larpapp-a45bd.appspot.com",
+            timestampsInSnapshots: true
         }
         firebase.initializeApp(config)
 
